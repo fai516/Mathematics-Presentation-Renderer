@@ -1,0 +1,22 @@
+textarea{
+    font-size: 12px;
+    width: 80%;
+    height: 150px;
+    resize: none;
+    margin: auto;
+    display: block;
+}
+
+textarea#mathText{
+    font-size: 18px;
+    width: 80%;
+    height: 100px;
+}
+
+form > input{
+    width: 50px;
+}
+
+form{
+    text-align: center;
+}
