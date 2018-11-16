@@ -56,8 +56,10 @@
     <form action="#" >
         <textarea id="svgCode" rows="2" cols="2"></textarea>
         <br/>
-        <input id="copyContent" type="button" value="Copy" onclick="copySVG()"/>
+        <input id="copyContent" type="button" value="Copy" onclick="copySVGCodetoClipboard(3)"/>
+        <input id="saveAsPNG" type="button" value="Export As PNG" onclick="copySVGCodetoClipboard(3)"/>
     </form>
+    <canvas style="display:none;" id="canvas"></canvas>
 </div>
 
 </body>

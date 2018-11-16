@@ -1,25 +1,25 @@
 function draftSubmission(){
-    console.log("draftSubmission");
     var text = document.getElementById("mathText").value;
     var new_text = "$$" + text + "$$";
-    //console.log(new_text);
     document.getElementById("HTML_CSS").innerHTML = new_text;
     MathJax.Hub.Typeset("HTML_CSS",function(){
-        getSVG();
+        putSvg(getSvg());
     });
 }
 
 function clearDraft(){
-    console.log("clearDraft");
     document.getElementById("mathText").value = "";
 }
 
-function getSVG(){
-    console.log("getSVG");
+function getSvg(){
+    if(!document.getElementById("mathText").value) return;
     var svg = document.getElementsByTagName("svg")[2];
-    var serializer = new XMLSerializer();
-    var str = serializer.serializeToString(svg);
-    document.getElementById("svgCode").value = str;
+    var SvgStr = new XMLSerializer().serializeToString(svg);
+    return SvgStr;
+}
+
+function putSvg(svgStr){
+    document.getElementById("svgCode").value = svgStr;
 }
 
 function pickExample(n){
@@ -37,4 +37,44 @@ function pickExample(n){
 function putExample(str){
     document.getElementById("mathText").value = str;
     draftSubmission();
+}
+
+function copySVGCodetoClipboard(timer){
+    document.getElementById("svgCode").select();
+    document.execCommand("copy");
+    var btn = document.getElementById("copyContent");
+    var pre = btn.value;
+    btn.disabled = true;
+
+    var countDown = setInterval(function(){
+                        if(timer==0) {
+                            btn.value = pre;
+                            btn.disabled = false;
+                            clearInterval(countDown)
+                        }
+                        else{
+                            btn.value = "Copied("+timer+")";
+                            timer--;
+                        }
+                    },1000);
+}
+
+function svgToPng(){
+    var svgText = getSvg();
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    var DOMURL = self||self.url||self.webkitURL;
+    
+    var img = new Image();
+    var svg = new Blob([svgText], {type: 'image/svg+xml'});
+    var url = (window.DOMURL ? DOMURL : webkitURL).createObjectURL(svg);
+
+    img.onload = function () {
+        ctx.drawImage(img, 0, 0);
+        DOMURL.revokeObjectURL(url);
+        var png_img = canvas.toDataURL("image/png");
+      }
+      
+    img.src = url;
+    console.log(url);
 }
