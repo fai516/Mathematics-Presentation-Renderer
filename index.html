@@ -3,6 +3,7 @@
 <head>
 <title>Mathematics Presentation Renderer</title>
 <link rel="stylesheet" type="text/css" href="style.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       showMathMenu: false,
@@ -31,8 +32,9 @@
 <div>
     <h1>Mathematics Presentation Renderer</h1>
     <div>
-      A program that can helps capture Mathematics presentation from <a src="#"> $\LaTeX$ </a> code.
+      A simple program that can helps capture Mathematics presentation from <a src="#"> $\LaTeX$ </a> code.
     </div>
+    <div>Check out <a href="https://github.com/fai516/Mathematics-Presentation-Renderer">https://github.com/fai516/Mathematics-Presentation-Renderer</a> for source code.</div>
     <div id="example">
         <h4>Example:</h4>
         <input type="button" value="Normal Distribution" onclick="putExample(pickExample(1))"/>
@@ -57,7 +59,7 @@
         <textarea id="svgCode" rows="2" cols="2"></textarea>
         <br/>
         <input id="copyContent" type="button" value="Copy" onclick="copySVGCodetoClipboard(3)"/>
-        <input id="saveAsPNG" type="button" value="Export As PNG" onclick="copySVGCodetoClipboard(3)"/>
+        <input id="saveAsPNG" type="button" value="Export As PNG" onclick="svgToPng()"/>
     </form>
     <canvas style="display:none;" id="canvas"></canvas>
 </div>
