@@ -19,6 +19,7 @@ function getSvg(){
 }
 
 function putSvg(svgStr){
+    if(svgStr==undefined) svgStr="";
     document.getElementById("svgCode").value = svgStr;
 }
 
